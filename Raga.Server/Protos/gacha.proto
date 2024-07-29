@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+option csharp_namespace = "Raga.Server.Gacha";
+
+service Gacha {
+  rpc PullGacha(GachaPullRequest) returns (GachaPullResponse);
+  rpc GetInventory(InventoryRequest) returns (InventoryResponse);
+  rpc GetPlayerStats(PlayerRequest) returns (PlayerStatsResponse);
+  rpc TradeItems(TradeRequest) returns (TradeResponse);
+  rpc ClaimDailyReward(DailyRewardRequest) returns (DailyRewardResponse);
+}
+
+message GachaPullRequest {
+  string player_id = 1;
+}
+
+message GachaPullResponse {
+  GachaItemResponse item = 1;
+  int32 remaining_currency = 2;
+}
+
+message InventoryRequest {
+  string player_id = 1;
+}
+
+message InventoryResponse {
+  repeated GachaItemResponse items = 1;
+}
+
+message PlayerRequest {
+  string player_id = 1;
+}
+
+message PlayerStatsResponse {
+  string player_id = 1;
+  int32 level = 2;
+  int32 total_pulls = 3;
+  int32 total_currency = 4;
+  repeated string achievements = 5;
+}
+
+message TradeRequest {
+  string from_player_id = 1;
+  string to_player_id = 2;
+  string offered_item_id = 3;
+  string requested_item_id = 4;
+}
+
+message TradeResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message DailyRewardRequest {
+  string player_id = 1;
+}
+
+message DailyRewardResponse {
+  bool success = 1;
+  string message = 2;
+  int32 reward_currency = 3;
+  GachaItemResponse reward_item = 4;
+}
+
+message GachaItemResponse {
+  string id = 1;
+  string name = 2;
+  string rarity = 3;
+  int32 power = 4;
+  int32 level = 5;
+}
