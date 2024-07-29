@@ -7,11 +7,22 @@ using Raga.Server.Data.Repositories;
 using Raga.Server.Features.Clans.Services;
 using Raga.Server.Features.Gacha.Commands.PullGacha;
 using Raga.Server.Features.Gacha.Services;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configure logging
+Log.Logger = new LoggerConfiguration()
+    .Enrich.FromLogContext()
+    .MinimumLevel.Information()
+    .WriteTo.Console()
+    // .WriteTo.OpenTelemetry()
+    .CreateLogger();
+
 // Add services to the container.
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+builder.Services.AddSerilog();
 
 builder.Services.AddGrpc();
 builder.Services.AddGrpcReflection();
