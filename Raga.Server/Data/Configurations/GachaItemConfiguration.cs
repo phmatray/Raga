@@ -9,10 +9,21 @@ public class GachaItemConfiguration : IEntityTypeConfiguration<GachaItem>
     public void Configure(EntityTypeBuilder<GachaItem> builder)
     {
         builder.HasKey(g => g.Id);
-        builder.Property(g => g.Name).IsRequired().HasMaxLength(100);
-        builder.Property(g => g.Rarity).IsRequired().HasMaxLength(50);
-        builder.Property(g => g.Power).IsRequired();
-        builder.Property(g => g.Level).IsRequired();
+        
+        builder.Property(g => g.Name)
+            .IsRequired()
+            .HasMaxLength(100);
+        
+        builder.Property(g => g.Rarity)
+            .IsRequired()
+            .HasMaxLength(50);
+        
+        builder.Property(g => g.Power)
+            .IsRequired();
+        
+        builder.Property(g => g.Level)
+            .IsRequired();
+        
         builder.HasOne(g => g.PlayerStats)
             .WithMany(p => p.Inventory)
             .HasForeignKey(g => g.PlayerId)

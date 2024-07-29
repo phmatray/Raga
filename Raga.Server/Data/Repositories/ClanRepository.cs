@@ -52,4 +52,20 @@ public class ClanRepository(
             .FirstOrDefaultAsync(c => c.Id == clanId);
         return clan?.Members ?? [];
     }
+
+    public async Task<List<Clan>> GetClansByScoreAsync(string? location)
+    {
+        var query = context.Clans
+            .Include(c => c.Members)
+            .AsQueryable();
+        
+        if (!string.IsNullOrEmpty(location))
+        {
+            query = query.Where(c => c.Location == location);
+        }
+
+        return await query
+            .OrderByDescending(c => c.Members.Sum(m => m.TotalCurrency))
+            .ToListAsync();
+    }
 }

@@ -9,4 +9,5 @@ public interface IClanRepository
     Task<bool> JoinClanAsync(string playerId, string clanId);
     Task<bool> LeaveClanAsync(string playerId, string clanId);
     Task<List<PlayerStats>> GetClanMembersAsync(string clanId);
+    Task<List<Clan>> GetClansByScoreAsync(string? location);
 }

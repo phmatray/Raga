@@ -5,7 +5,6 @@ namespace Raga.Server.Data.Models;
 
 public class PlayerStats
 {
-    [Key]
     public string PlayerId { get; set; }
     public int Level { get; set; } = 1;
     public int TotalPulls { get; set; }
@@ -14,6 +13,5 @@ public class PlayerStats
     public List<GachaItem> Inventory { get; set; } = [];
     public List<string> Achievements { get; set; } = [];
     public string? ClanId { get; set; }
-    [ForeignKey("ClanId")]
     public Clan? Clan { get; set; }
 }

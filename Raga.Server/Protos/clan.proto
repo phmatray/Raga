@@ -10,11 +10,13 @@ service ClanService {
   rpc JoinClan(JoinClanRequest) returns (JoinClanResponse);
   rpc LeaveClan(LeaveClanRequest) returns (LeaveClanResponse);
   rpc GetClanMembers(GetClanMembersRequest) returns (GetClanMembersResponse);
+  rpc GetClans(GetClansRequest) returns (GetClansResponse);
 }
 
 message CreateClanRequest {
   string name = 1;
   string description = 2;
+  string location = 3;
 }
 
 message CreateClanResponse {
@@ -59,9 +61,27 @@ message GetClanMembersResponse {
   repeated PlayerStatsResponse members = 1;
 }
 
+message GetClansRequest {
+  string location = 1;
+}
+
+message GetClansResponse {
+  repeated ClanScoreResponse clans = 1;
+}
+
 message ClanResponse {
   string id = 1;
   string name = 2;
   string description = 3;
-  int32 member_count = 4;
+  string location = 4;
+  int32 member_count = 5;
+}
+
+message ClanScoreResponse {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  optional string location = 4;
+  int32 member_count = 5;
+  int32 score = 6;
 }
