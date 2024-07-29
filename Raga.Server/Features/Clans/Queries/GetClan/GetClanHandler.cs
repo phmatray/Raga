@@ -12,6 +12,7 @@ public class GetClanHandler(
         CancellationToken cancellationToken)
     {
         var clan = await clanRepository.GetClanByIdAsync(request.ClanId);
+        
         if (clan == null)
         {
             return new GetClanResponse { Clan = null };
@@ -19,13 +20,7 @@ public class GetClanHandler(
 
         return new GetClanResponse
         {
-            Clan = new ClanResponse
-            {
-                Id = clan.Id,
-                Name = clan.Name,
-                Description = clan.Description,
-                MemberCount = clan.Members.Count
-            }
+            Clan = clan.ToClanResponse()
         };
     }
 }

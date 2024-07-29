@@ -1,12 +1,11 @@
 using MediatR;
 using Raga.Server.Common.Interfaces;
-using Raga.Server.Common.Mappers;
 using Raga.Server.Data.Models;
 
 namespace Raga.Server.Features.Gacha.Commands.PullGacha;
 
 public class PullGachaHandler(
-    IPlayerStatsRepository playerStatsRepository,
+    IPlayerRepository playerRepository,
     IGachaItemRepository gachaItemRepository,
     IFakeDataGenerator<GachaItem> gachaItemFaker)
     : IRequestHandler<PullGachaCommand, GachaPullResponse>
@@ -15,28 +14,28 @@ public class PullGachaHandler(
         PullGachaCommand request,
         CancellationToken cancellationToken)
     {
-        var playerStats = await playerStatsRepository.GetPlayerStatsAsync(request.PlayerId);
+        var player = await playerRepository.GetPlayerAsync(request.PlayerId);
             
-        if (playerStats == null)
+        if (player == null)
         {
-            // If PlayerStats doesn't exist, create it
-            playerStats = new PlayerStats { PlayerId = request.PlayerId };
-            await playerStatsRepository.AddPlayerStatsAsync(playerStats);
+            // If Player doesn't exist, create it
+            player = new Player { PlayerId = request.PlayerId };
+            await playerRepository.AddPlayerAsync(player);
         }
         
         var item = gachaItemFaker.Generate();
         item.PlayerId = request.PlayerId;
         await gachaItemRepository.AddGachaItemAsync(item);
         
-        playerStats.TotalPulls++;
-        playerStats.TotalCurrency -= 10; // Assume each pull costs 10 currency
+        player.TotalPulls++;
+        player.TotalCurrency -= 10; // Assume each pull costs 10 currency
 
-        await playerStatsRepository.UpdatePlayerStatsAsync(playerStats);
+        await playerRepository.UpdatePlayerAsync(player);
 
         return new GachaPullResponse
         {
             Item = item.ToGachaItemResponse(),
-            RemainingCurrency = playerStats.TotalCurrency
+            RemainingCurrency = player.TotalCurrency
         };
     }
 }

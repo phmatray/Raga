@@ -30,7 +30,7 @@ builder.Services.AddGrpcReflection();
 builder.Services.AddDbContext<GachaContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("GachaDatabase")));
 
-builder.Services.AddScoped<IPlayerStatsRepository, PlayerStatsRepository>();
+builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
 builder.Services.AddScoped<IGachaItemRepository, GachaItemRepository>();
 builder.Services.AddScoped<IClanRepository, ClanRepository>();
 builder.Services.AddScoped<IFakeDataGenerator<GachaItem>, GachaItemFaker>();

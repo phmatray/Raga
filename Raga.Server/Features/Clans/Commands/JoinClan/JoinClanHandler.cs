@@ -11,13 +11,26 @@ public class JoinClanHandler(
         JoinClanCommand request,
         CancellationToken cancellationToken)
     {
-        // TODO: maximum 30 players per clan
-        
+        var memberCount = await clanRepository.GetClanMemberCountAsync(request.ClanId);
+
+        if (memberCount >= 30)
+        {
+            return new JoinClanResponse
+            {
+                Success = false,
+                Message = "Clan is full"
+            };
+        }
+
         var success = await clanRepository.JoinClanAsync(request.PlayerId, request.ClanId);
+        var message = success
+            ? "Joined clan successfully"
+            : "Failed to join clan";
+
         return new JoinClanResponse
         {
             Success = success,
-            Message = success ? "Joined clan successfully" : "Failed to join clan"
+            Message = message
         };
     }
 }

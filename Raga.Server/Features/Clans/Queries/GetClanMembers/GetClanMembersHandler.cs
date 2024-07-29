@@ -12,18 +12,13 @@ public class GetClanMembersHandler(
         CancellationToken cancellationToken)
     {
         var members = await clanRepository.GetClanMembersAsync(request.ClanId);
+
         var response = new GetClanMembersResponse();
         
         foreach (var member in members)
         {
-            response.Members.Add(new PlayerStatsResponse
-            {
-                PlayerId = member.PlayerId,
-                Level = member.Level,
-                TotalPulls = member.TotalPulls,
-                TotalCurrency = member.TotalCurrency,
-                Achievements = { member.Achievements }
-            });
+            var playerResponse = member.ToPlayerResponse();
+            response.Members.Add(playerResponse);
         }
         
         return response;

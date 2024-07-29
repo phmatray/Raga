@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Raga.Server.Data.Models;
 
-public class PlayerStats
+public class Player
 {
     public string PlayerId { get; set; }
     public int Level { get; set; } = 1;

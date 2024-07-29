@@ -24,7 +24,7 @@ public class GachaItemConfiguration : IEntityTypeConfiguration<GachaItem>
         builder.Property(g => g.Level)
             .IsRequired();
         
-        builder.HasOne(g => g.PlayerStats)
+        builder.HasOne(g => g.Player)
             .WithMany(p => p.Inventory)
             .HasForeignKey(g => g.PlayerId)
             .OnDelete(DeleteBehavior.Cascade);

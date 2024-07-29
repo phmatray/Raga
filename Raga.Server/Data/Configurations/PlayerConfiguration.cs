@@ -4,9 +4,9 @@ using Raga.Server.Data.Models;
 
 namespace Raga.Server.Data.Configurations;
 
-public class PlayerStatsConfiguration : IEntityTypeConfiguration<PlayerStats>
+public class PlayerConfiguration : IEntityTypeConfiguration<Player>
 {
-    public void Configure(EntityTypeBuilder<PlayerStats> builder)
+    public void Configure(EntityTypeBuilder<Player> builder)
     {
         builder.HasKey(p => p.PlayerId);
         

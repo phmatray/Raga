@@ -58,7 +58,7 @@ message GetClanMembersRequest {
 }
 
 message GetClanMembersResponse {
-  repeated PlayerStatsResponse members = 1;
+  repeated PlayerResponse members = 1;
 }
 
 message GetClansRequest {
@@ -66,18 +66,10 @@ message GetClansRequest {
 }
 
 message GetClansResponse {
-  repeated ClanScoreResponse clans = 1;
+  repeated ClanResponse clans = 1;
 }
 
 message ClanResponse {
-  string id = 1;
-  string name = 2;
-  string description = 3;
-  string location = 4;
-  int32 member_count = 5;
-}
-
-message ClanScoreResponse {
   string id = 1;
   string name = 2;
   string description = 3;

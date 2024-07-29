@@ -9,13 +9,13 @@ public class GachaContext(
     : DbContext(options)
 {
     public DbSet<GachaItem> GachaItems { get; set; }
-    public DbSet<PlayerStats> PlayerStats { get; set; }
+    public DbSet<Player> Player { get; set; }
     public DbSet<Clan> Clans { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new GachaItemConfiguration());
-        modelBuilder.ApplyConfiguration(new PlayerStatsConfiguration());
+        modelBuilder.ApplyConfiguration(new PlayerConfiguration());
         modelBuilder.ApplyConfiguration(new ClanConfiguration());
     }
 }

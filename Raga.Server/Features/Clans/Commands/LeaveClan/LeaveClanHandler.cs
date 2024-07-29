@@ -12,10 +12,14 @@ public class LeaveClanHandler(
         CancellationToken cancellationToken)
     {
         var success = await clanRepository.LeaveClanAsync(request.PlayerId, request.ClanId);
+        var message = success
+            ? "Left clan successfully"
+            : "Failed to leave clan";
+        
         return new LeaveClanResponse
         {
             Success = success,
-            Message = success ? "Left clan successfully" : "Failed to leave clan"
+            Message = message
         };
     }
 }

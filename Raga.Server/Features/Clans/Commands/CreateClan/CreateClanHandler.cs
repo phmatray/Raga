@@ -12,26 +12,29 @@ public class CreateClanHandler(
         CreateClanCommand request,
         CancellationToken cancellationToken)
     {
+        if (await clanRepository.ClanNameExistsAsync(request.Name))
+        {
+            return new CreateClanResponse
+            {
+                Success = false,
+                Message = "Clan name already exists"
+            };
+        }
+
         var clan = new Clan
         {
             Id = Guid.NewGuid().ToString(),
             Name = request.Name,
             Description = request.Description
         };
-
+        
         clan = await clanRepository.CreateClanAsync(clan);
 
         return new CreateClanResponse
         {
             Success = true,
             Message = "Clan created successfully",
-            Clan = new ClanResponse
-            {
-                Id = clan.Id,
-                Name = clan.Name,
-                Description = clan.Description,
-                MemberCount = 0
-            }
+            Clan = clan.ToClanResponse()
         };
     }
 }

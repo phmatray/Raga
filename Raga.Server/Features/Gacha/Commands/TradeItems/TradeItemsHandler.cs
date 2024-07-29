@@ -26,9 +26,17 @@ public class TradeItemsHandler(
             await gachaItemRepository.AddGachaItemAsync(offeredItem);
             await gachaItemRepository.AddGachaItemAsync(requestedItem);
 
-            return new TradeResponse { Success = true, Message = "Trade successful" };
+            return new TradeResponse
+            {
+                Success = true,
+                Message = "Trade successful"
+            };
         }
 
-        return new TradeResponse { Success = false, Message = "Trade failed" };
+        return new TradeResponse
+        {
+            Success = false,
+            Message = "Trade failed"
+        };
     }
 }

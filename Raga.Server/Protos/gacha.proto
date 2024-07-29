@@ -5,7 +5,7 @@ option csharp_namespace = "Raga.Server";
 service GachaService {
   rpc PullGacha(GachaPullRequest) returns (GachaPullResponse);
   rpc GetInventory(InventoryRequest) returns (InventoryResponse);
-  rpc GetPlayerStats(PlayerRequest) returns (PlayerStatsResponse);
+  rpc GetPlayer(GetPlayerRequest) returns (GetPlayerResponse);
   rpc TradeItems(TradeRequest) returns (TradeResponse);
   rpc ClaimDailyReward(DailyRewardRequest) returns (DailyRewardResponse);
 }
@@ -27,16 +27,12 @@ message InventoryResponse {
   repeated GachaItemResponse items = 1;
 }
 
-message PlayerRequest {
+message GetPlayerRequest {
   string player_id = 1;
 }
 
-message PlayerStatsResponse {
-  string player_id = 1;
-  int32 level = 2;
-  int32 total_pulls = 3;
-  int32 total_currency = 4;
-  repeated string achievements = 5;
+message GetPlayerResponse {
+  PlayerResponse player = 1;
 }
 
 message TradeRequest {
@@ -68,4 +64,12 @@ message GachaItemResponse {
   string rarity = 3;
   int32 power = 4;
   int32 level = 5;
+}
+
+message PlayerResponse {
+  string player_id = 1;
+  int32 level = 2;
+  int32 total_pulls = 3;
+  int32 total_currency = 4;
+  repeated string achievements = 5;
 }

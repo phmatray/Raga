@@ -16,22 +16,8 @@ public class GetClansHandler(
 
         foreach (var clan in clans)
         {
-            var clanScoreResponse = new ClanScoreResponse
-            {
-                Id = clan.Id,
-                Name = clan.Name,
-                Description = clan.Description,
-                MemberCount = clan.Members.Count,
-                Score = clan.Members.Sum(m => m.TotalCurrency)
-            };
-            
-            if (clan.Location != null)
-            {
-                clanScoreResponse.Location = clan.Location;
-            }
-            
-            
-            response.Clans.Add(clanScoreResponse);
+            var clanResponse = clan.ToClanResponse();
+            response.Clans.Add(clanResponse);
         }
 
         return response;

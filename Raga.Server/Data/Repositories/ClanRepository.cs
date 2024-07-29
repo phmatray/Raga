@@ -24,11 +24,11 @@ public class ClanRepository(
 
     public async Task<bool> JoinClanAsync(string playerId, string clanId)
     {
-        var player = await context.PlayerStats.FindAsync(playerId);
-        if (player == null || player.ClanId != null) return false;
-
-        var clan = await context.Clans.FindAsync(clanId);
-        if (clan == null || clan.Members.Count >= 50) return false;
+        var player = await context.Player.FindAsync(playerId);
+        if (player == null || player.ClanId != null)
+        {
+            return false;
+        }
 
         player.ClanId = clanId;
         await context.SaveChangesAsync();
@@ -37,19 +37,23 @@ public class ClanRepository(
 
     public async Task<bool> LeaveClanAsync(string playerId, string clanId)
     {
-        var player = await context.PlayerStats.FindAsync(playerId);
-        if (player == null || player.ClanId != clanId) return false;
+        var player = await context.Player.FindAsync(playerId);
+        if (player == null || player.ClanId != clanId)
+        {
+            return false;
+        }
 
         player.ClanId = null;
         await context.SaveChangesAsync();
         return true;
     }
 
-    public async Task<List<PlayerStats>> GetClanMembersAsync(string clanId)
+    public async Task<List<Player>> GetClanMembersAsync(string clanId)
     {
         var clan = await context.Clans
             .Include(c => c.Members)
             .FirstOrDefaultAsync(c => c.Id == clanId);
+        
         return clan?.Members ?? [];
     }
 
@@ -67,5 +71,17 @@ public class ClanRepository(
         return await query
             .OrderByDescending(c => c.Members.Sum(m => m.TotalCurrency))
             .ToListAsync();
+    }
+
+    public async Task<bool> ClanNameExistsAsync(string name)
+    {
+        return await context.Clans
+            .AnyAsync(c => c.Name == name);
+    }
+
+    public async Task<int> GetClanMemberCountAsync(string clanId)
+    {
+        return await context.Player
+            .CountAsync(p => p.ClanId == clanId);
     }
 }

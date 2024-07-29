@@ -1,12 +1,11 @@
 using MediatR;
 using Raga.Server.Common.Interfaces;
-using Raga.Server.Common.Mappers;
 using Raga.Server.Data.Models;
 
 namespace Raga.Server.Features.Gacha.Commands.ClaimDailyReward;
 
 public class ClaimDailyRewardHandler(
-    IPlayerStatsRepository playerStatsRepository,
+    IPlayerRepository playerRepository,
     IFakeDataGenerator<GachaItem> gachaItemFaker)
     : IRequestHandler<ClaimDailyRewardCommand, DailyRewardResponse>
 {
@@ -14,9 +13,9 @@ public class ClaimDailyRewardHandler(
         ClaimDailyRewardCommand request,
         CancellationToken cancellationToken)
     {
-        var playerStats = await playerStatsRepository.GetPlayerStatsAsync(request.PlayerId);
+        var player = await playerRepository.GetPlayerAsync(request.PlayerId);
 
-        if (playerStats == null)
+        if (player == null)
         {
             return new DailyRewardResponse
             {
@@ -26,9 +25,9 @@ public class ClaimDailyRewardHandler(
         }
 
         // Check if player has already claimed the daily reward (simplified logic)
-        if (DateTime.UtcNow.Date == playerStats.LastDailyRewardClaim.Date)
+        if (DateTime.UtcNow.Date == player.LastDailyRewardClaim.Date)
         {
-            var nextRewardTime = playerStats.LastDailyRewardClaim.AddDays(1);
+            var nextRewardTime = player.LastDailyRewardClaim.AddDays(1);
             
             return new DailyRewardResponse
             {
@@ -37,12 +36,12 @@ public class ClaimDailyRewardHandler(
             };
         }
 
-        playerStats.LastDailyRewardClaim = DateTime.UtcNow;
-        playerStats.TotalCurrency += 10; // Example reward
+        player.LastDailyRewardClaim = DateTime.UtcNow;
+        player.TotalCurrency += 10; // Example reward
         var rewardItem = gachaItemFaker.Generate();
         rewardItem.PlayerId = request.PlayerId;
 
-        await playerStatsRepository.UpdatePlayerStatsAsync(playerStats);
+        await playerRepository.UpdatePlayerAsync(player);
         
         return new DailyRewardResponse
         {

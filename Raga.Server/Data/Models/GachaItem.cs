@@ -11,5 +11,5 @@ public class GachaItem
     public int Power { get; set; }
     public int Level { get; set; }
     public string PlayerId { get; set; }
-    public PlayerStats PlayerStats { get; set; }
+    public Player Player { get; set; }
 }

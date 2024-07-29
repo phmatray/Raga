@@ -6,5 +6,5 @@ public class Clan
     public string Name { get; set; }
     public string Description { get; set; }
     public string? Location { get; set; }
-    public List<PlayerStats> Members { get; set; } = [];
+    public List<Player> Members { get; set; } = [];
 }
