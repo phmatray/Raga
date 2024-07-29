@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace Raga.Server.Features.Gacha.Queries.GetPlayer;
+namespace Raga.Server.Features.Players.Queries.GetPlayer;
 
 public class GetPlayerQuery : IRequest<GetPlayerResponse>
 {

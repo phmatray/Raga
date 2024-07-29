@@ -4,7 +4,6 @@ using Raga.Server.Features.Gacha.Commands.ClaimDailyReward;
 using Raga.Server.Features.Gacha.Commands.PullGacha;
 using Raga.Server.Features.Gacha.Commands.TradeItems;
 using Raga.Server.Features.Gacha.Queries.GetInventoryHandler;
-using Raga.Server.Features.Gacha.Queries.GetPlayer;
 
 namespace Raga.Server.Features.Gacha.Services;
 
@@ -49,26 +48,6 @@ public class GachaService(
         catch (Exception ex)
         {
             logger.LogError(ex, "Error occurred while processing GetInventory for PlayerId: {PlayerId}", request.PlayerId);
-            throw new RpcException(new Status(StatusCode.Internal, "Internal server error"));
-        }
-    }
-
-    public override async Task<GetPlayerResponse> GetPlayer(
-        GetPlayerRequest request,
-        ServerCallContext context)
-    {
-        logger.LogInformation("GetPlayer called with PlayerId: {PlayerId}", request.PlayerId);
-        
-        try
-        {
-            var query = new GetPlayerQuery { PlayerId = request.PlayerId };
-            var response = await mediator.Send(query);
-            logger.LogInformation("GetPlayer succeeded for PlayerId: {PlayerId}", request.PlayerId);
-            return response;
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, "Error occurred while processing GetPlayer for PlayerId: {PlayerId}", request.PlayerId);
             throw new RpcException(new Status(StatusCode.Internal, "Internal server error"));
         }
     }

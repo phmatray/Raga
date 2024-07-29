@@ -1,7 +1,7 @@
 using MediatR;
 using Raga.Server.Common.Interfaces;
 
-namespace Raga.Server.Features.Gacha.Queries.GetPlayer;
+namespace Raga.Server.Features.Players.Queries.GetPlayer;
 
 public class GetPlayerHandler(
     IPlayerRepository playerRepository)

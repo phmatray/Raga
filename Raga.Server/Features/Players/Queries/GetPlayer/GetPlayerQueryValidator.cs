@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Raga.Server.Features.Gacha.Queries.GetPlayer;
+namespace Raga.Server.Features.Players.Queries.GetPlayer;
 
 public class GetPlayerQueryValidator : AbstractValidator<GetPlayerQuery>
 {
