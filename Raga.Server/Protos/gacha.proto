@@ -15,7 +15,7 @@ message GachaPullRequest {
 }
 
 message GachaPullResponse {
-  GachaItemResponse item = 1;
+  GachaItemModel item = 1;
   int32 remaining_currency = 2;
 }
 
@@ -24,7 +24,7 @@ message InventoryRequest {
 }
 
 message InventoryResponse {
-  repeated GachaItemResponse items = 1;
+  repeated GachaItemModel items = 1;
 }
 
 message GetPlayerRequest {
@@ -32,7 +32,7 @@ message GetPlayerRequest {
 }
 
 message GetPlayerResponse {
-  PlayerResponse player = 1;
+  PlayerModel player = 1;
 }
 
 message TradeRequest {
@@ -55,10 +55,10 @@ message DailyRewardResponse {
   bool success = 1;
   string message = 2;
   int32 reward_currency = 3;
-  GachaItemResponse reward_item = 4;
+  GachaItemModel reward_item = 4;
 }
 
-message GachaItemResponse {
+message GachaItemModel {
   string id = 1;
   string name = 2;
   string rarity = 3;
@@ -66,7 +66,7 @@ message GachaItemResponse {
   int32 level = 5;
 }
 
-message PlayerResponse {
+message PlayerModel {
   string player_id = 1;
   int32 level = 2;
   int32 total_pulls = 3;

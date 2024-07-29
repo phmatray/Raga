@@ -22,7 +22,7 @@ message CreateClanRequest {
 message CreateClanResponse {
   bool success = 1;
   string message = 2;
-  ClanResponse clan = 3;
+  ClanModel clan = 3;
 }
 
 message GetClanRequest {
@@ -30,7 +30,7 @@ message GetClanRequest {
 }
 
 message GetClanResponse {
-  ClanResponse clan = 1;
+  ClanModel clan = 1;
 }
 
 message JoinClanRequest {
@@ -58,7 +58,7 @@ message GetClanMembersRequest {
 }
 
 message GetClanMembersResponse {
-  repeated PlayerResponse members = 1;
+  repeated PlayerModel members = 1;
 }
 
 message GetClansRequest {
@@ -66,10 +66,10 @@ message GetClansRequest {
 }
 
 message GetClansResponse {
-  repeated ClanResponse clans = 1;
+  repeated ClanModel clans = 1;
 }
 
-message ClanResponse {
+message ClanModel {
   string id = 1;
   string name = 2;
   string description = 3;

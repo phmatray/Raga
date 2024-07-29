@@ -4,10 +4,10 @@ namespace Raga.Server.Features;
 
 public static class DomainToResponseMappers
 {
-    public static ClanResponse ToClanResponse(
+    public static ClanModel ToClanResponse(
         this Clan clan)
     {
-        var target = new ClanResponse
+        var target = new ClanModel
         {
             Id = clan.Id,
             Name = clan.Name,
@@ -24,10 +24,10 @@ public static class DomainToResponseMappers
         return target;
     }
     
-    public static PlayerResponse ToPlayerResponse(
+    public static PlayerModel ToPlayerResponse(
         this Player player)
     {
-        var target = new PlayerResponse
+        var target = new PlayerModel
         {
             PlayerId = player.PlayerId,
             Level = player.Level,
@@ -39,10 +39,10 @@ public static class DomainToResponseMappers
         return target;
     }
     
-    public static GachaItemResponse ToGachaItemResponse(
+    public static GachaItemModel ToGachaItemResponse(
         this GachaItem item)
     {
-        var target = new GachaItemResponse
+        var target = new GachaItemModel
         {
             Id = item.Id,
             Name = item.Name,
