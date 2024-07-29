@@ -7,6 +7,7 @@ using Raga.Server.Data.Repositories;
 using Raga.Server.Features.Clans.Services;
 using Raga.Server.Features.Gacha.Commands.PullGacha;
 using Raga.Server.Features.Gacha.Services;
+using Raga.Server.Features.Info.Services;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -53,8 +54,9 @@ if (app.Environment.IsDevelopment())
     app.MapGrpcReflectionService();
 }
 
+app.MapGrpcService<InfoService>();
 app.MapGrpcService<GachaService>();
-app.MapGrpcService<ClanService>();
+app.MapGrpcService<ClansService>();
 
 app.MapGet("/",
     () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");

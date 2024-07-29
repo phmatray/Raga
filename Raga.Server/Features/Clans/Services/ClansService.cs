@@ -9,7 +9,7 @@ using Raga.Server.Features.Clans.Queries.GetClans;
 
 namespace Raga.Server.Features.Clans.Services;
 
-public class ClanService(
+public class ClansService(
     ILogger<Gacha.Services.GachaService> logger,
     IMediator mediator)
     : Server.ClanService.ClanServiceBase

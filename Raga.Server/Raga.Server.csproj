@@ -8,7 +8,8 @@
 
   <ItemGroup>
     <Protobuf Include="Protos\gacha.proto" GrpcServices="Server" />
-    <Protobuf Include="Protos\clan.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos\clans.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos\info.proto" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>
