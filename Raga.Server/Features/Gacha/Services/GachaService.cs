@@ -1,20 +1,17 @@
 using Grpc.Core;
 using MediatR;
-using Raga.Server.Features.Gacha.Commands;
 using Raga.Server.Features.Gacha.Commands.ClaimDailyReward;
 using Raga.Server.Features.Gacha.Commands.PullGacha;
 using Raga.Server.Features.Gacha.Commands.TradeItems;
-using Raga.Server.Features.Gacha.Queries;
 using Raga.Server.Features.Gacha.Queries.GetInventoryHandler;
 using Raga.Server.Features.Gacha.Queries.GetPlayerStats;
-using Raga.Server.Gacha;
 
 namespace Raga.Server.Features.Gacha.Services;
 
 public class GachaService(
     ILogger<GachaService> logger,
     IMediator mediator)
-    : Server.Gacha.Gacha.GachaBase
+    : Server.GachaService.GachaServiceBase
 {
     public override async Task<GachaPullResponse> PullGacha(
         GachaPullRequest request,

@@ -1,5 +1,4 @@
 using MediatR;
-using Raga.Server.Gacha;
 
 namespace Raga.Server.Features.Gacha.Queries.GetInventoryHandler;
 

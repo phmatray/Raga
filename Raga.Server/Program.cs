@@ -20,6 +20,7 @@ builder.Services.AddDbContext<GachaContext>(options =>
 
 builder.Services.AddScoped<IPlayerStatsRepository, PlayerStatsRepository>();
 builder.Services.AddScoped<IGachaItemRepository, GachaItemRepository>();
+builder.Services.AddScoped<IClanRepository, ClanRepository>();
 builder.Services.AddScoped<IFakeDataGenerator<GachaItem>, GachaItemFaker>();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(PullGachaHandler).Assembly));
 builder.Services.AddValidatorsFromAssemblyContaining<PullGachaCommandValidator>();

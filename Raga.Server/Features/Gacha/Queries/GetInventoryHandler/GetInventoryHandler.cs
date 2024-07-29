@@ -1,7 +1,6 @@
 using MediatR;
 using Raga.Server.Common.Interfaces;
 using Raga.Server.Common.Mappers;
-using Raga.Server.Gacha;
 
 namespace Raga.Server.Features.Gacha.Queries.GetInventoryHandler;
 

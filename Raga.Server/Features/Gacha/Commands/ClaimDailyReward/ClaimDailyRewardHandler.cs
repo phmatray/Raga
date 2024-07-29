@@ -2,7 +2,6 @@ using MediatR;
 using Raga.Server.Common.Interfaces;
 using Raga.Server.Common.Mappers;
 using Raga.Server.Data.Models;
-using Raga.Server.Gacha;
 
 namespace Raga.Server.Features.Gacha.Commands.ClaimDailyReward;
 

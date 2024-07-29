@@ -1,6 +1,5 @@
 using MediatR;
 using Raga.Server.Common.Interfaces;
-using Raga.Server.Gacha;
 
 namespace Raga.Server.Features.Gacha.Commands.TradeItems;
 

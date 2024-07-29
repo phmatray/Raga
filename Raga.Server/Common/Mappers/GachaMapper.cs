@@ -1,5 +1,4 @@
 using Raga.Server.Data.Models;
-using Raga.Server.Gacha;
 
 namespace Raga.Server.Common.Mappers;
 

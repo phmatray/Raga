@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-option csharp_namespace = "Raga.Server.Gacha";
+option csharp_namespace = "Raga.Server";
 
-service Gacha {
+service GachaService {
   rpc PullGacha(GachaPullRequest) returns (GachaPullResponse);
   rpc GetInventory(InventoryRequest) returns (InventoryResponse);
   rpc GetPlayerStats(PlayerRequest) returns (PlayerStatsResponse);

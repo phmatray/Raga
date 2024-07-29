@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Raga.Server.Data.Models;
 
@@ -12,4 +13,7 @@ public class PlayerStats
     public DateTime LastDailyRewardClaim { get; set; }
     public List<GachaItem> Inventory { get; set; } = [];
     public List<string> Achievements { get; set; } = [];
+    public string? ClanId { get; set; }
+    [ForeignKey("ClanId")]
+    public Clan? Clan { get; set; }
 }
