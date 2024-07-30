@@ -1,5 +1,6 @@
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Raga.Server;
 using Raga.Server.Common.Interfaces;
 using Raga.Server.Data;
 using Raga.Server.Data.Models;
@@ -52,13 +53,21 @@ if (app.Environment.IsDevelopment())
     app.MapGrpcReflectionService();
 }
 
-app.MapGrpcService<Raga.Server.Features.Auth.Services.AuthService>();
-app.MapGrpcService<Raga.Server.Features.Clans.Services.ClanService>();
-app.MapGrpcService<Raga.Server.Features.Gacha.Services.GachaService>();
-app.MapGrpcService<Raga.Server.Features.Info.Services.InfoService>();
-app.MapGrpcService<Raga.Server.Features.Players.Services.PlayerService>();
+app.MapGrpcAuthService();
+app.MapGrpcChatService();
+app.MapGrpcClanService();
+app.MapGrpcGachaService();
+app.MapGrpcInfoService();
+app.MapGrpcLeaderboardService();
+app.MapGrpcMatchmakingService();
+app.MapGrpcNotificationService();
+app.MapGrpcPlayerService();
+app.MapGrpcStoreService();
 
-app.MapGet("/",
-    () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
+app.MapGet("/", () => 
+    """
+    Communication with gRPC endpoints must be made through a gRPC client.
+    To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909
+    """);
 
 app.Run();

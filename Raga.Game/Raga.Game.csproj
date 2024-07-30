@@ -15,6 +15,9 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Protobuf Include="Protos\clans.proto" GrpcServices="Client"/>
     <Protobuf Include="Protos\gacha.proto" GrpcServices="Client"/>
+    <Protobuf Include="Protos\info.proto" GrpcServices="Client"/>
+    <Protobuf Include="Protos\player.proto" GrpcServices="Client"/>
   </ItemGroup>
 </Project>
