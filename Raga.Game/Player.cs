@@ -14,7 +14,7 @@ public partial class Player : CharacterBody2D
     public override void _Ready()
     {
         // Get TextEdit named PlayerName
-        var playerName = GetNode<TextEdit>("%PlayerName");
+        var playerName = GetNode<TextEdit>("%PlayerNameTextEdit");
         
         _playerId = playerName.Text;
         _gameClient = new GachaClient("http://localhost:5042", _playerId);

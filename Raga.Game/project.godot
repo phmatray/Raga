@@ -16,6 +16,15 @@ run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+FrameProviderDispatcher="*res://addons/R3.Godot/FrameProviderDispatcher.cs"
+ObservableTrackerRuntimeHook="*res://addons/R3.Godot/ObservableTrackerRuntimeHook.cs"
+
 [dotnet]
 
 project/assembly_name="Raga.Game"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/R3.Godot/plugin.cfg")
