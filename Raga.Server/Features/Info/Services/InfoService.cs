@@ -13,19 +13,9 @@ public class InfoService(
         GetInfoRequest request,
         ServerCallContext context)
     {
-        logger.LogInformation("GetInfo called");
-        
-        try
-        {
-            var query = new GetInfoQuery();
-            var response = await mediator.Send(query);
-            logger.LogInformation("GetInfo succeeded");
-            return response;
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, "Error occurred while processing GetInfo");
-            throw new RpcException(new Status(StatusCode.Internal, "Internal server error"));
-        }
+        return await GrpcRequestBuilder<GetInfoResponse>
+            .CreateWithDefaults(request, logger, mediator, context)
+            .MapTo(() => new GetInfoQuery())
+            .ExecuteAsync();
     }
 }

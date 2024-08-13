@@ -11,18 +11,11 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure logging
-Log.Logger = new LoggerConfiguration()
-    .Enrich.FromLogContext()
-    .MinimumLevel.Information()
-    .WriteTo.Console()
-    // .WriteTo.OpenTelemetry()
-    .CreateLogger();
-
 // Add services to the container.
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
-builder.Services.AddSerilog();
+builder.Host.UseSerilog((context, loggerConfig)
+    => loggerConfig.ReadFrom.Configuration(context.Configuration));
 
 builder.Services.AddGrpc();
 builder.Services.AddGrpcReflection();
