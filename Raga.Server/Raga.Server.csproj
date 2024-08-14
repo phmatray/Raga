@@ -40,6 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Gacha\Queries\" />
     <Folder Include="Features\Players\Commands\DeletePlayer\" />
     <Folder Include="Features\Players\Commands\UpdatePlayer\" />
     <Folder Include="Features\Players\Queries\ListPlayers\" />
