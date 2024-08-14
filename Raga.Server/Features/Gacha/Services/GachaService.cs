@@ -3,7 +3,6 @@ using MediatR;
 using Raga.Server.Features.Gacha.Commands.ClaimDailyReward;
 using Raga.Server.Features.Gacha.Commands.PullGacha;
 using Raga.Server.Features.Gacha.Commands.TradeItems;
-using Raga.Server.Features.Gacha.Queries.GetInventoryHandler;
 
 namespace Raga.Server.Features.Gacha.Services;
 
@@ -18,15 +17,6 @@ public class GachaService(
         return GrpcRequestBuilder<GachaPullResponse>
             .CreateWithDefaults(request, logger, mediator, context)
             .MapTo(() => new PullGachaCommand { PlayerId = request.PlayerId })
-            .ExecuteAsync();
-    }
-
-    public override Task<InventoryResponse> GetInventory(
-        InventoryRequest request, ServerCallContext context)
-    {
-        return GrpcRequestBuilder<InventoryResponse>
-            .CreateWithDefaults(request, logger, mediator, context)
-            .MapTo(() => new GetInventoryQuery { PlayerId = request.PlayerId })
             .ExecuteAsync();
     }
 

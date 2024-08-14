@@ -2,11 +2,14 @@ syntax = "proto3";
 
 option csharp_namespace = "Raga.Server";
 
+import "Protos/gacha.proto";
+
 service PlayerService {
   rpc GetPlayer(GetPlayerRequest) returns (GetPlayerResponse);
   rpc UpdatePlayer(UpdatePlayerRequest) returns (UpdatePlayerResponse);
   rpc DeletePlayer(DeletePlayerRequest) returns (DeletePlayerResponse);
   rpc ListPlayers(ListPlayersRequest) returns (ListPlayersResponse);
+  rpc GetInventory(InventoryRequest) returns (InventoryResponse);
 }
 
 message GetPlayerRequest {
@@ -43,6 +46,14 @@ message ListPlayersRequest {
 message ListPlayersResponse {
   repeated PlayerModel players = 1;
   int32 total_count = 2;
+}
+
+message InventoryRequest {
+  string player_id = 1;
+}
+
+message InventoryResponse {
+  repeated GachaItemModel items = 1;
 }
 
 message PlayerModel {

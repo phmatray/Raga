@@ -5,12 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ObservableCollections.R3" Version="2.1.3" />
+    <PackageReference Include="ObservableCollections.R3" Version="2.1.4" />
     <PackageReference Include="R3" Version="1.1.16" />
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.27.2" />
+    <PackageReference Include="Google.Protobuf" Version="3.27.3" />
     <PackageReference Include="Grpc.Net.Client" Version="2.65.0" />
     
     <PackageReference Include="Grpc.Tools" Version="2.65.0">
@@ -18,11 +18,17 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-  
+
   <ItemGroup>
-    <Protobuf Include="Protos\clans.proto" GrpcServices="Client"/>
-    <Protobuf Include="Protos\gacha.proto" GrpcServices="Client"/>
-    <Protobuf Include="Protos\info.proto" GrpcServices="Client"/>
-    <Protobuf Include="Protos\player.proto" GrpcServices="Client"/>
+    <Protobuf Include="Protos\auth.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos\chat.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos\clans.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos\gacha.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos\info.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos\leaderboard.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos\matchmaking.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos\notification.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos\player.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos\store.proto" GrpcServices="Client" />
   </ItemGroup>
 </Project>

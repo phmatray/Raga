@@ -18,4 +18,10 @@ public class PlayerClient
         var request = new GetPlayerRequest { PlayerId = playerId };
         return await _client.GetPlayerAsync(request);
     }
+
+    public async Task<InventoryResponse> GetInventoryAsync(string playerId)
+    {
+        var request = new InventoryRequest { PlayerId = playerId };
+        return await _client.GetInventoryAsync(request);
+    }
 }

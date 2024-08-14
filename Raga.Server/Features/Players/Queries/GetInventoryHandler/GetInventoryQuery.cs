@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace Raga.Server.Features.Gacha.Queries.GetInventoryHandler;
+namespace Raga.Server.Features.Players.Queries.GetInventoryHandler;
 
 public class GetInventoryQuery : IRequest<InventoryResponse>
 {

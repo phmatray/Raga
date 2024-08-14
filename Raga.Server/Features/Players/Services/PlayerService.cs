@@ -1,5 +1,6 @@
 using Grpc.Core;
 using MediatR;
+using Raga.Server.Features.Players.Queries.GetInventoryHandler;
 using Raga.Server.Features.Players.Queries.GetPlayer;
 
 namespace Raga.Server.Features.Players.Services;
@@ -34,5 +35,14 @@ public class PlayerService(
         ListPlayersRequest request, ServerCallContext context)
     {
         throw new NotImplementedException();
+    }
+
+    public override Task<InventoryResponse> GetInventory(
+        InventoryRequest request, ServerCallContext context)
+    {
+        return GrpcRequestBuilder<InventoryResponse>
+            .CreateWithDefaults(request, logger, mediator, context)
+            .MapTo(() => new GetInventoryQuery { PlayerId = request.PlayerId })
+            .ExecuteAsync();
     }
 }

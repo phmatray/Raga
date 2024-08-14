@@ -2,7 +2,6 @@ syntax = "proto3";
 
 option csharp_namespace = "Raga.Server";
 
-import "Protos/gacha.proto";
 import "Protos/player.proto";
 
 service ClanService {

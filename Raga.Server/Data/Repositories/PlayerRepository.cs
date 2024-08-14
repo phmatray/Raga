@@ -28,4 +28,11 @@ public class PlayerRepository(
         await context.SaveChangesAsync();
         return player;
     }
+
+    public async Task<List<GachaItem>> GetPlayerInventoryAsync(string playerId)
+    {
+        return await context.GachaItems
+            .Where(i => i.PlayerId == playerId)
+            .ToListAsync();
+    }
 }

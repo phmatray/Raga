@@ -21,12 +21,6 @@ public class GachaClient
         return await _client.PullGachaAsync(request);
     }
 
-    public async Task<InventoryResponse> GetInventoryAsync()
-    {
-        var request = new InventoryRequest { PlayerId = _playerId };
-        return await _client.GetInventoryAsync(request);
-    }
-
     public async Task<TradeResponse> TradeItemsAsync(string toPlayerId, string offeredItemId, string requestedItemId)
     {
         var request = new TradeRequest

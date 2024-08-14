@@ -4,7 +4,6 @@ option csharp_namespace = "Raga.Server";
 
 service GachaService {
   rpc PullGacha(GachaPullRequest) returns (GachaPullResponse);
-  rpc GetInventory(InventoryRequest) returns (InventoryResponse);
   rpc TradeItems(TradeRequest) returns (TradeResponse);
   rpc ClaimDailyReward(DailyRewardRequest) returns (DailyRewardResponse);
 }
@@ -16,14 +15,6 @@ message GachaPullRequest {
 message GachaPullResponse {
   GachaItemModel item = 1;
   int32 remaining_currency = 2;
-}
-
-message InventoryRequest {
-  string player_id = 1;
-}
-
-message InventoryResponse {
-  repeated GachaItemModel items = 1;
 }
 
 message TradeRequest {
