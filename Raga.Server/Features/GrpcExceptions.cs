@@ -14,5 +14,5 @@ public class InsufficientCurrencyException(string playerId)
 
 public class DailyRewardAlreadyClaimedException(DateTime nextRewardTime)
     : RpcException(
-        new Status(StatusCode.AlreadyExists,
+        new Status(StatusCode.FailedPrecondition,
             $"Daily reward already claimed. Next reward available at {nextRewardTime}."));
