@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> **This repository has moved.** The code now lives in **[phmatray/godot-games](https://github.com/phmatray/godot-games)** under [`raga`](https://github.com/phmatray/godot-games/tree/main/raga) — full git history preserved. This repository is archived (read-only).
+
 ![Raga banner](.github/banner.png)
 
 # Raga — Gacha game with Godot and gRPC
