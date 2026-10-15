@@ -83,7 +83,10 @@ jobs:
           FAILED=()
           while read -r t; do
             echo "::group::build $t"
-            dotnet build "$t" -c Release --nologo || FAILED+=("$t")
+            # Une solution Godot n'a pas de configuration "Release" (Debug /
+            # ExportDebug / ExportRelease) : son equivalent est ExportRelease.
+            cfg=Release; grep -q 'ExportRelease|' "$t" && cfg=ExportRelease
+            dotnet build "$t" -c "$cfg" --nologo || FAILED+=("$t")
             echo "::endgroup::"
           done < "$RUNNER_TEMP/ci_targets.txt"
           if [ ${#FAILED[@]} -gt 0 ]; then
@@ -107,7 +110,8 @@ jobs:
           FAILED=()
           while read -r t; do
             echo "::group::test $t"
-            dotnet test "$t" -c Release --verbosity normal || FAILED+=("$t")
+            cfg=Release; grep -q 'ExportRelease|' "$t" && cfg=ExportRelease
+            dotnet test "$t" -c "$cfg" --verbosity normal || FAILED+=("$t")
             echo "::endgroup::"
           done < "$RUNNER_TEMP/ci_targets.txt"
           if [ ${#FAILED[@]} -gt 0 ]; then
